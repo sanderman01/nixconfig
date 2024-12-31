@@ -108,6 +108,7 @@
     tmux
     tree
     git
+    git-credential-manager
     wget
     gparted
     xorg.xbacklight

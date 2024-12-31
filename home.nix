@@ -24,6 +24,15 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # Git and co.
+  programs.git = {
+    enable = true;
+    extraConfig.credential.helper = "manager";
+    extraConfig.credential."https://github.com".username = "sanderman01";
+    extraConfig.credential.credentialStore = "cache";
+  };
+
+  # Ripgrep
   programs.ripgrep.enable = true;
 
   # Neovim text editor
@@ -66,10 +75,12 @@
     nix-direnv.enable = true;
   };
 
-  # System and terminal fonts
-  home.packages = [ 
+  # System packages and terminal fonts
+  home.packages = with pkgs; [
+    git
+    git-credential-manager
+    pkgs.discord
     (pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; })
-    pkgs.discord 
   ];
   fonts.fontconfig = {
     enable = true;
